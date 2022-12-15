@@ -73,3 +73,47 @@
 MongoDB, Redis, Cassandra, Neo4J
 
 → 동일한 데이터 저장구조가 아니며, 데이터의 논리적, 물리적 구조가 다르다는 것은 설계와 구축, 운영, 관리방법이 다름을 의미함
+
+#### Key-Value DB
+* Amazon Dynamo Paper
+* 데이터 모델 : Key와 Value 쌍으로 된 Collection
+* 제품 유형 : Riak, Redis, Tokyo
+
+#### Column-Family DB
+* Google Big Table paper
+* 데이터 모델 : Column Families
+* 제품 유형 : HBase, Cassandra
+
+#### Document DB
+* Lotus Notes
+* 데이터 모델 : Key와 Value 쌍으로 된 Collection
+* 제품 유형 : MongoDB, CoughDB
+
+#### Graph DB
+* Euler & Graph Theory
+* 데이터 모델 : nodes, rels, K-V on both
+* 제품 유형 : AllegroGraph, Neo4J
+
+​
+
+## 1.2.2 빅데이터 데이터 모델링을 위한 가이드라인
+
+★ 설명 기준 : Hadoop 파일 시스템과 NoSQL의 전반적인 데이터 저장 관리 기술
+
+​
+
+#### 1) 초당 5만건 이상의 데이터가 발생하는가?
+
+시스템 비즈니스 환경에서 초당 데이터 발생량이 5만~10만건 이상이 발생한다면 기존 관계형 DBMS로 처리할 수 없기 때문에 빅데이터 솔루션을 선택해야 함
+
+​
+
+#### 2) 트랜잭션 제어가 필요한가?
+
+- 관계형 DBMS는 commit과 rollback 명령어를 통해 사용자가 직접 트랜잭션 제어를 하고, 이를 통해 데이터의 입력/수정/삭제가 이루어짐
+
+- Hadoop Echo-System은 파일 시스템 기반으로 하기 때문에 사용자가 직접 트랜잭션을 제어할 수 없고, 데이터를 공유할 수 없기 때문에 트랜잭션 제어가 필요한 비즈니스 환경이라면 NoSQL 제품을 선택해야 함
+
+​
+
+#### 3) 데이터 무결성이 요구되는가?
